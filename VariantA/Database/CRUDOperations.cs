@@ -36,7 +36,7 @@ namespace VariantA
                 Console.WriteLine(e.Message);
             }
         }
-        public static void OverrideFile(string filename, Dictionary<int, Order> orders) // Аерезапись файла
+        public static void OverrideFile(string filename, Dictionary<int, Order> orders) // Перезапись файла
         {
             StringBuilder path = new("");
             path.Append(@"database\" + filename); // Определение пути
@@ -86,11 +86,13 @@ namespace VariantA
                 Console.WriteLine(e.Message);
             }
         }
-        public static void ReadOrders (string filename)
+        public static Dictionary<int, Order> ReadOrders (string filename)
         {
             List<ProductsInOrder> SendProducts = new(); // Создание списка товаров в заказе 
-            Dictionary<int, Order> Orders = new(); // Создание списка всех заказов
-            Order SendOrder = new(); // Создание заказа
+            Dictionary<int, Order> FileOrders = new(); // Создание списка всех заказов
+            Order SendOrder; // Создание заказа
+
+
             StringBuilder path = new("");
             path.Append(@"database\" + filename); // Определение пути
             string[] Text = File.ReadAllLines(path.ToString(), Encoding.Default); // Считать все строки в файле.
@@ -108,9 +110,9 @@ namespace VariantA
                 }
                 var date = Product[^1].Split('.');
                 SendOrder = new(ref SendProducts, new DateTime(int.Parse(date[2]),int.Parse(date[1]),int.Parse(date[0])));
-                Orders.Add(number, SendOrder); // Добавление заказа в список заказов
-                Console.WriteLine(Order.ShowOrder(Orders[number]));
+                FileOrders.Add(number, SendOrder); // Добавление заказа в список заказов
             }
+            return FileOrders;
         }
     }
 }

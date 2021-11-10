@@ -14,7 +14,8 @@ namespace VariantA
             if (!dirInfo.Exists) { dirInfo.Create(); } // Создание директории
             StringBuilder path = new("");
             path.Append(@"database\" + filename); // Определение пути
-            if (!File.Exists(path.ToString())) { File.Create(path.ToString()).Close(); } // Создание файла
+            using FileStream fstream = new(path.ToString(), FileMode.Create);// Создание файла
+          //  if (!File.Exists(path.ToString())) { File.Create(path.ToString()).Close(); } // Создание файла
         }
         public static void DeleteDatabaseFile(string filename) // Удаление файла базы данных 
         {

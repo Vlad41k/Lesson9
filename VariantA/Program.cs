@@ -15,6 +15,7 @@ namespace VariantA
         {
             int key = 0;
             DatabaseManagement.CreateDatabaseFile("orders.txt");
+            DatabaseManagement.CreateDatabaseFile("queryresults.txt");
             List<ProductsInOrder> SendProducts = new(); // Создание списка товаров в заказе 
             Dictionary<int, Order> Orders = new(); // Создание списка всех заказов
             Order SendOrder = new(); // Создание заказа
@@ -59,9 +60,6 @@ namespace VariantA
             Orders.Add(key++, SendOrder); // Добавление заказа в список заказов
 
 
-            Product.PriceChanged += OnPriceChanged; // Добавление обработчика
-
-
             Order.RemoveOrder(Orders, table, 1); // Удаление заказа, содержащего 4 ттовара типа mouse
 
 
@@ -75,8 +73,12 @@ namespace VariantA
             Console.ReadKey();
             Console.Clear();
             CRUDOperations.ReadOrders("orders.txt");
-            CRUDOperations.Clearfile("orders.txt");
-            CRUDOperations.Clearfile("queryresults.txt");
+            Dictionary<int, Order> FileOrders = CRUDOperations.ReadOrders("orders.txt"); ;
+            foreach (var order in FileOrders)
+            {
+                Console.WriteLine(Order.ShowOrder(order.Value));
+            }
+            Product.PriceChanged += OnPriceChanged; // Добавление обработчика
 
         }
     }

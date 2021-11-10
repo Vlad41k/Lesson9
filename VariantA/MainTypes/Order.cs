@@ -51,7 +51,6 @@ namespace VariantA
                 }
             }
             Console.WriteLine(str.ToString());
-            DatabaseManagement.CreateDatabaseFile("queryresults.txt");
             CRUDOperations.QueryResult("queryresults.txt", str);
         }
 
@@ -74,7 +73,6 @@ namespace VariantA
                     str.Append(order.Value.Number + " ");
             }
             Console.WriteLine(str.ToString());
-            DatabaseManagement.CreateDatabaseFile("queryresults.txt");
             CRUDOperations.QueryResult("queryresults.txt", str);
         }
 
@@ -99,7 +97,6 @@ namespace VariantA
                     str.Append(order.Value.Number + " ");
             }
             Console.WriteLine(str.ToString());
-            DatabaseManagement.CreateDatabaseFile("queryresults.txt");
             CRUDOperations.QueryResult("queryresults.txt", str);
         }
 
