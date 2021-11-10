@@ -26,6 +26,7 @@ namespace VariantA
             Description = description;
             Price = price;
         }
+        public Product() { }
         public override string ToString() => $"{Title}, {Description}, цена: {Price}$";
     }
 }

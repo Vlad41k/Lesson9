@@ -15,6 +15,7 @@ namespace VariantA
             Item = item;
             Amount = amount;
         }
+        public ProductsInOrder() { }
         public string GetProductsInOrder() 
             => $" | {Item.Title} | {Item.Description} | {Item.Price} | {Amount}";
         public override string ToString() => $"{Item}, количество: {Amount} шт.";

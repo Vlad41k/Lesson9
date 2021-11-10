@@ -4,6 +4,7 @@ using System.Text;
 
 namespace VariantA
 {
+
     class Order
     {
         public static int ComparePrice(ProductsInOrder first, ProductsInOrder second) =>

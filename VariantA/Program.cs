@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text.Json;
+
 
 
 namespace VariantA
@@ -73,13 +73,14 @@ namespace VariantA
             Console.ReadKey();
             Console.Clear();
             CRUDOperations.ReadOrders("orders.txt");
-            Dictionary<int, Order> FileOrders = CRUDOperations.ReadOrders("orders.txt"); ;
-            foreach (var order in FileOrders)
+            JSONManagement.JSONSerialize(Orders);
+            Dictionary<int, Order> FileOrders = CRUDOperations.ReadOrders("orders.txt");
+            Dictionary<int, Order> JSONOrders = JSONManagement.JSONDeSerialize();
+            foreach (var item in JSONOrders)
             {
-                Console.WriteLine(Order.ShowOrder(order.Value));
+                Console.WriteLine(Order.ShowOrder(item.Value));
             }
             Product.PriceChanged += OnPriceChanged; // Добавление обработчика
-
         }
     }
 }
